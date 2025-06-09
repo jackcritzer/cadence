@@ -6,7 +6,7 @@ export default function FormCTAButton( { status, className = "" }: FormCTAButton
     return (
         <button
             type="submit"
-            className={`${ctaButtonClass}${className}cursor-pointer`}
+            className={`${ctaButtonClass} ${className} cursor-pointer`}
             disabled={status === "loading"}
         >
             {status === "loading" ? "Submitting..." : "Join Waitlist"}
