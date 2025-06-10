@@ -1,7 +1,7 @@
-import Hero from "@/components/Hero";
-import ValueProps from "@/components/ValueProps";
-import Mission from "@/components/Mission";
-import WaitlistForm from "../components/WaitlistForm";
+import Hero from "@/components/sections/Hero";
+import ValueProps from "@/components/sections/ValueProps";
+import Mission from "@/components/sections/Mission";
+import WaitlistForm from "../components/common/WaitlistForm";
 
 export default function Home() {
   return (

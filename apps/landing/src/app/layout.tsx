@@ -1,4 +1,4 @@
-import Header from '@/components/Header';
+import Header from '@/components/layout/Header';
 import { Inter, DM_Sans } from "next/font/google";
 
 //import { globalsCss } from "./globals.css"; // Import globals.css
