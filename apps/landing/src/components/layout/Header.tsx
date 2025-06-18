@@ -1,14 +1,16 @@
 'use client'
 import Link from "next/link"
 import Image from "next/image"
-import HorizontalLogo from '../../../public/Logo/Horizontal_Logo.svg'
-import GhostButton from "../common/GhostButton"
+import HorizontalLogo from '@/../public/Logo/Horizontal_Logo.svg'
+import GhostButton from "@/components/common/GhostButton"
 
 export default function Header() {
-    
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
 
     return (
-        <header className="sticky top-0 z-50 bg-background_light bg-opacity-80 backdrop-blur-md shadow-sm">
+        <header id="site-header" className="sticky top-0 z-50 bg-background_light bg-opacity-80 backdrop-blur-md shadow-sm">
             <div className="mx-auto max-w-7xl px-4 py-3 flex justify-between tracking-[-0.03em]">
                 <div className="flex items-center gap-2">
                     <Link href="/">
@@ -22,7 +24,7 @@ export default function Header() {
                     <a href="#features" className="text-black hover:underline font-dmsans">
                         Features
                     </a>
-                    <GhostButton text="Get Early Access"/>
+                    <GhostButton text="Get Early Access" onClick={scrollToTop}/>
                 </nav>
             </div>
         </header>

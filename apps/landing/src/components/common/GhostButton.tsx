@@ -1,28 +1,32 @@
-export default function GhostButton({ 
-                                        text = "", 
-                                        className = ""
-                                    }) {
-                                        
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    };
+'use client';
+import BaseButton from './BaseButton';
+import { twMerge } from 'tailwind-merge';
+import { MouseEventHandler } from 'react';
 
+type GhostButtonProps = {
+    text?: string;
+    className?: string;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
+};
+
+export default function GhostButton({
+    text = '',
+    className = '',
+    onClick,
+}: GhostButtonProps) {
     return (
-        <button
-            className={`
-                        ${className}
-                        text-sage
-                        border-sage border-[1px] 
-                        bg-transparent 
-                        cursor-pointer 
-                        px-6 py-2 
-                        rounded
-                        hover:bg-[#b8b8b82d]
-                        transition-colors duration-300 ease-in-out`
-                    }
-            onClick={scrollToTop}
-        >
-            {text}
-        </button>
-    )
+        <BaseButton
+            text={text}
+            onClick={onClick}
+            className={twMerge(
+                `
+                text-sage
+                border border-sage 
+                bg-transparent
+                hover:bg-sage/10
+                `,
+                className
+            )}
+        />
+    );
 }

@@ -1,5 +1,8 @@
+"use client";
 import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 import { Inter, DM_Sans } from "next/font/google";
+import { useEffect } from 'react';
 
 //import { globalsCss } from "./globals.css"; // Import globals.css
 import "../styles/styles.css";
@@ -16,18 +19,27 @@ const dmSans = DM_Sans({
   variable: "--font-dmsans"
 });
 
-export const metadata = {
-  title: 'Cadence Studio',
-  description: 'Join the waitlist to collaborate on music projects.',
-};
-
-// {`${inter.variable} ${dmSans.variable} antialiased`}
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    function updateHeaderHeightVar() {
+      const header = document.getElementById('site-header');
+      if (header) {
+        const height = header.offsetHeight;
+        document.documentElement.style.setProperty('--header-height', `${height}px`);
+      }
+    }
+
+    updateHeaderHeightVar();
+    window.addEventListener('resize', updateHeaderHeightVar);
+    return () => window.removeEventListener('resize', updateHeaderHeightVar);
+  }, []);
+
   return (
     <html lang="en">
       <body className={`${inter.variable} ${dmSans.variable} antialiased`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

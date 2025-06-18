@@ -26,6 +26,7 @@
     "eslint-config-next": "15.3.1",
     "next-transpile-modules": "^10.0.1",
     "postcss": "^8.5.3",
+    "tailwind-merge": "^3.3.1",
     "typescript": "^5.8.3"
   },
   "dependencies": {

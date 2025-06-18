@@ -58,3 +58,17 @@
   --text-label-spacing: 0.05em;
   --text-label-transform: uppercase;
 }
+
+@theme {
+  --color-mustard-50: #FCFBF5;
+  --color-mustard-100: #FCF9ED;
+  --color-mustard-200: #F7EFD2;
+  --color-mustard-300: #F5E6BA;
+  --color-mustard-400: #EBCC8A;
+  --color-mustard-500: #E3B25D;
+  --color-mustard-600: #CC994B;
+  --color-mustard-700: #AB7635;
+  --color-mustard-800: #875422;
+  --color-mustard-900: #663912;
+  --color-mustard-950: #422008;
+}
