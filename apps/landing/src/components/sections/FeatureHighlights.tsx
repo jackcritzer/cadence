@@ -34,11 +34,11 @@ export default function FeatureHighlights() {
     ]
 
     return (
-        <section id="features" className="flex flex-col items-center justify-center w-full h-auto bg-white px-16 py-16">
-            <h2 className="text-h2-size font-dmsans font-bold tracking-[-0.03em] text-text_primary">
+        <section id="features" className="flex flex-col items-center justify-center w-full h-auto bg-[linear-gradient(to_bottom,_#FFFFFF_80%,_#F3F3F3_100%)] px-12 py-10">
+            <h2 className="text-h2-size font-dmsans font-bold tracking-[-0.03em] text-text_primary mb-10">
                 How It Works
             </h2>
-            <div className="flex w-[75vw] gap-x-7 mt-16 mb-16">
+            <div className="flex flex-col lg:flex-row gap-y-5 w-full gap-x-7 mb-8 max-w-[1200px] mx-auto">
                 {
                     featureData.map((data, i) => <FeatureCard key={i} data={data}/>)
                 }

@@ -13,7 +13,7 @@ export default function FeatureCard({
 }) {
 
     return (
-        <div className="flex flex-col items-center justify-start p-4 shadow-md rounded-xl flex-1 bg-[#f5f0e883]">
+        <div className="flex flex-col items-center justify-start p-4 rounded-xl flex-1 bg-[#f5f0e883]" style={{ boxShadow: '6px 6px 12px rgba(0, 0, 0, 0.1)' }}>
             <div className="text-[20px] text-black font-dmsans font-bold tracking-[-0.03em] mt-2">
                 {data.title}
             </div>

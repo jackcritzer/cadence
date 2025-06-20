@@ -26,16 +26,18 @@ export default function PlatformComparison() {
     ];
 
     return (
-        <section className="flex flex-col items-center justify-center w-full h-auto bg-[#F8F8F8] px-16 py-16">
-            <h2 className="text-h2-size font-dmsans font-bold tracking-[-0.03em] text-text_primary mb-2">
+        <section className="flex flex-col items-center justify-center w-full h-auto bg-[#F8F8F8] px-8 py-16 bg-[linear-gradient(to_bottom,_#F3F3F3_80%,_#EDEDED_100%)]">
+            <h2 className="text-h2-size text-center font-dmsans font-bold tracking-[-0.03em] text-text_primary mb-4 px-8">
                 How Cadence Stacks Up
             </h2>
-            <p className="text-[18px] font-regular font-dmsans tracking-[-0.03em] text-text_primary">A side-by-side look at what makes Cadence different from generic file sharing tools.</p>
-            <div className="w-full max-w-4xl rounded-xl shadow-md p-1 mt-10 mb-10">
+            <p className="text-xl font-regular font-dmsans tracking-[-0.03em] text-text_primary px-8">A side-by-side look at what makes Cadence different from generic file sharing tools.</p>
+            <div className="w-full lg:max-w-4xl rounded-xl shadow-md p-1 mt-10 mb-10 max-w-[1200px] mx-auto">
                 <div className="grid grid-cols-3 divide-x divide-gray-300 font-semibold text-text_primary">
                     <div className="p-4" />
-                    <div className="p-4 text-[#5E6A64] font-dmsans font-medium tracking-[-0.03em] text-xl">cadence</div>
-                    <div className="p-4">Dropbox / Drive</div>
+                    <div className="flex items-center p-4 text-[#5E6A64] font-dmsans font-medium tracking-[-0.03em] text-xl">
+                        <p>cadence</p>
+                    </div>
+                    <div className="flex items-center p-4">Dropbox / Drive</div>
                 </div>
 
                 {rows.map((row, i) => (

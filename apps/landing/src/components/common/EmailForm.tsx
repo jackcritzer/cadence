@@ -43,30 +43,30 @@ export default function EmailForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-wrap items-end justify-center gap-x-6 mt-8">
-		<div className="flex flex-col items-start justify-center gap-y-2">
-			<label htmlFor="email" className="text-base text-white text-[14px] font-medium leading-[calc(120%)] tracking-[0.01em] ml-1 font-dmsans">
-				Email
-			</label>
-			<input
-				id="email"
-				name="Email"
-				type="email"
-				autoComplete="email"
-				placeholder="you@example.com"
-				required
-				className="
-						bg-white border border-divider_gray
-						text-gray-900
-						px-4 py-2 
-						text-m text-rounded font-dmsans text-[16px] 
-						tracking-[-0.03em] font-light
-						rounded-[6px]
-						placeholder-gray-400
-						focus:outline-none
-						w-[300px]"
-			/>
-		</div>
+    <form onSubmit={handleSubmit} className="flex flex-wrap items-end justify-center gap-x-6 gap-y-4 mt-2">
+      <div className="flex flex-col items-start justify-center gap-y-2">
+        <label htmlFor="email" className="text-base text-white text-[14px] font-medium leading-[calc(120%)] tracking-[0.01em] ml-1 font-dmsans">
+          Email
+        </label>
+        <input
+          id="email"
+          name="Email"
+          type="email"
+          autoComplete="email"
+          placeholder="you@example.com"
+          required
+          className="
+              bg-white border border-divider_gray
+              text-gray-900
+              px-4 py-2 
+              text-m text-rounded font-dmsans text-[16px] 
+              tracking-[-0.03em] font-light
+              rounded-[6px]
+              placeholder-gray-400
+              focus:outline-none
+              w-[300px]"
+        />
+      </div>
       <input type="hidden" name="Created" value="x-sheetmonkey-current-date-time" />
       <SecondaryButton
         type="submit"
