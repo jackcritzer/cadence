@@ -53,7 +53,7 @@ export default function EmailForm() {
           name="Email"
           type="email"
           autoComplete="email"
-          placeholder="you@example.com"
+          placeholder="producer@yourstudio.com"
           required
           className="
               bg-white border border-divider_gray
@@ -73,7 +73,7 @@ export default function EmailForm() {
         disabled={status === 'loading'}
         className={`${status === 'loading' ? 'opacity-50 cursor-not-allowed' : ''}`}
       >
-        {status === 'loading' ? 'Submitting...' : 'Get Early Access'}
+        {status === 'loading' ? 'Submitting...' : 'Join the Producer Beta'}
       </SecondaryButton>
       {status === "error" && (
         <p className="text-red-400 text-sm w-full">Something went wrong. Try again later.</p>

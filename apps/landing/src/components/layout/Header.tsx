@@ -4,8 +4,12 @@ import Image from "next/image"
 import HorizontalLogo from '@/../public/Logo/Horizontal_Logo.svg'
 import GhostButton from "@/components/common/GhostButton"
 import { useState, useEffect } from "react"
+import { useRouter, usePathname } from 'next/navigation'
+
 
 export default function Header() {
+    const router = useRouter()
+    const path = usePathname()
 
     const [menuOpen, setMenuOpen] = useState(false)
 
@@ -15,13 +19,25 @@ export default function Header() {
         setMenuOpen(window.innerWidth >= 1024 ? false : menuOpen);
     }, [menuOpen]);
 
+    useEffect(() => {
+        setMenuOpen(false)
+    }, [path])
+
     const toggleMenuOpen = () => {
         setMenuOpen(menuOpen =>!menuOpen)
     }
 
-    const scrollToTop = () => {
+    /* const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
-    };
+    }; */
+
+    const handleClick = () => {
+        if (path === '/') {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        } else {
+            router.push('/')
+        }
+    }
 
     return (
         <header className="
@@ -38,7 +54,7 @@ export default function Header() {
                 <nav 
                     className={`
                         ${menuOpen ? 'flex': 'hidden'}
-                        absolute top-full left-0
+                        absolute top-full left-0 py-2
                         lg:static lg:left-auto lg:top-auto lg:w-auto
                         flex-col justify-start items-start gap-3 divide-y-[1px] divide-gray-300 
                         lg:divide-y-0
@@ -53,16 +69,16 @@ export default function Header() {
                         lg:flex lg:opacity-100 lg:max-h-none
                         `
                     }>
-                    <Link href="#problem-solution" className="w-full lg:w-auto whitespace-nowrap text-base text-black hover:underline font-dmsans py-2 px-4">
+                    {/* <Link href="#problem-solution" className="w-full lg:w-auto whitespace-nowrap text-base text-black hover:underline font-dmsans py-2 px-4">
                         How it works
-                    </Link>
+                    </Link> */}
                     <Link href="#features" className="w-full lg:w-auto whitespace-nowrap text-base text-black hover:underline font-dmsans py-2 px-4">
-                        Features
+                        Why Producers Love Cadence
                     </Link>
                     <Link href="/blog" className="w-full lg:w-auto whitespace-nowrap text-base text-black hover:underline font-dmsans py-2 px-4">
                         Blog
                     </Link>
-                    <GhostButton className={"my-2 self-center"} text="Get Early Access" onClick={scrollToTop}/>
+                    <GhostButton className={"my-2 self-center"} text="Join the Producer Beta" onClick={handleClick}/>
                 </nav>
                 <button className={"justify-self-end lg:hidden"} onClick={toggleMenuOpen}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">

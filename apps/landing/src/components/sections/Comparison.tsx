@@ -4,24 +4,24 @@ export default function PlatformComparison() {
 
     const rows = [
         {
-            feature: "Organize by stems, beats, vocals",
-            dropbox: `❌ Generic folders`,
-            cadence: "✔ Music-first file types",
-        },
-        {
-            feature: "Version tracking",
-            dropbox: "❌ Manual file names",
-            cadence: "✔ Built-in version labels",
+            feature: "Versioning",
+            cadence: "✔ Built-in version tags (v1, v2, v3…)",
+            dropbox: `❌ Manual file names`,
         },
         {
             feature: "Feedback",
+            cadence: "✔ Timestamped stem comments",
             dropbox: "❌ Not supported",
-            cadence: "✔ Timestamped comments",
         },
         {
-            feature: "Credits tracking",
+            feature: "Credits",
+            cadence: "✔ Structured, exportable credits sheet",
             dropbox: "❌ Manual or missing",
-            cadence: "✔ Structured and exportable",
+        },
+        {
+            feature: "Organization",
+            cadence: "✔ Music-first file types (stems, beats, vocals)",
+            dropbox: "❌ Generic folders",
         },
     ];
 
@@ -30,7 +30,7 @@ export default function PlatformComparison() {
             <h2 className="text-h2-size text-center font-dmsans font-bold tracking-[-0.03em] text-text_primary mb-4 px-8">
                 How Cadence Stacks Up
             </h2>
-            <p className="text-xl font-regular font-dmsans tracking-[-0.03em] text-text_primary px-8">A side-by-side look at what makes Cadence different from generic file sharing tools.</p>
+            <p className="text-xl text-center font-regular font-dmsans tracking-[-0.03em] text-text_primary px-8">A side-by-side look at what makes Cadence different from generic file sharing tools.</p>
             <div className="w-full lg:max-w-4xl rounded-xl shadow-md p-1 mt-10 mb-10 max-w-[1200px] mx-auto">
                 <div className="grid grid-cols-3 divide-x divide-gray-300 font-semibold text-text_primary">
                     <div className="p-4" />
