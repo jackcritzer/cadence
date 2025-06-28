@@ -2,30 +2,30 @@ version: "3.8"
 
 services:
   backend:
-    build: ./backend
+    build: ./apps/backend
     container_name: cadence-backend
     ports:
       - "3000:3000"  # Host:Container
     env_file:
-      - ./backend/.env
+      - ./apps/backend/.env
     restart: unless-stopped
 
   landing:
-    build: ./landing
+    build: ./apps/landing
     container_name: cadence-landing
     ports:
       - "3001:3000"
     env_file:
-      - ./landing/.env
+      - ./apps/landing/.env
     restart: unless-stopped
 
   frontend:
-    build: ./frontend
+    build: ./apps/frontend
     container_name: cadence-frontend
     ports:
       - "3002:3000"
     env_file:
-      - ./frontend/.env
+      - ./apps/frontend/.env
     restart: unless-stopped
 
  
