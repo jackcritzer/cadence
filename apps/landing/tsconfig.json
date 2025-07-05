@@ -30,5 +30,11 @@
     "../../**/*.tsx",
     "../../next-env.d.ts",
     ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "../../apps/backend",
+    "../../packages/backend",
+    "../../apps/backend/prisma/seed.ts",
+    "node_modules"
   ]
 }
