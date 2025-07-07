@@ -14,6 +14,9 @@ RUN pnpm install --filter ./apps/backend... --frozen-lockfile
 COPY ../../apps/backend ./apps/backend
 
 WORKDIR /app/apps/backend
+
+RUN pnpm prisma generate
+
 RUN pnpm run build
 
 CMD ["pnpm", "start"]
