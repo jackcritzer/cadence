@@ -1,16 +1,19 @@
+# apps/backend/Dockerfile
 FROM node:20
 
 WORKDIR /app
 
-# Copy root lockfile and backend package.json
-COPY pnpm-lock.yaml .
-COPY apps/backend/package.json .
+# Copy only what's needed for dependency resolution
+COPY ../../pnpm-workspace.yaml ../../pnpm-lock.yaml ./
+COPY ../../apps/backend/package.json ./apps/backend/
 
 RUN npm install -g pnpm
 RUN pnpm install --filter ./apps/backend... --frozen-lockfile
 
-# Copy backend source
-COPY apps/backend .
+# Copy the full backend source
+COPY ../../apps/backend ./apps/backend
 
+WORKDIR /app/apps/backend
 RUN pnpm run build
-CMD ["./load-env-from-ssm.sh"]
+
+CMD ["pnpm", "start"]

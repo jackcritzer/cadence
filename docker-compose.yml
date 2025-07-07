@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .                           # context is the root of the monorepo
+      dockerfile: apps/backend/Dockerfile
+    ports:
+      - "3001:3001"
+    working_dir: /app
+    volumes:
+      - ./apps/backend:/app                # only mount the backend folder
+    depends_on:
+      - db
+    entrypoint: ["/bin/sh", "-c"]
+    command: [". /app/load-env-from-ssm.sh && pnpm run start"]
+
+  db:
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: cadence
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
