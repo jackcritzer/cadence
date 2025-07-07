@@ -1,26 +1,16 @@
-# Use official Node.js image
 FROM node:20
 
-# Set working directory inside the container
 WORKDIR /app
 
-# Copy package files first (for better caching)
-COPY package.json package-lock.json ./
+# Copy root lockfile and backend package.json
+COPY pnpm-lock.yaml .
+COPY apps/backend/package.json .
 
-# Install dependencies
-RUN npm install
+RUN npm install -g pnpm
+RUN pnpm install --filter ./apps/backend... --frozen-lockfile
 
-# Copy remaining application files
-COPY . .
+# Copy backend source
+COPY apps/backend .
 
-# Generate Prisma client binaries
-RUN npx prisma generate
-
-# Build the TypeScript code
-RUN npm run build
-
-# Expose port 3000 (or the port your backend runs on)
-EXPOSE 3000
-
-# Command to start the backend
-CMD ["npm", "start"]
+RUN pnpm run build
+CMD ["./load-env-from-ssm.sh"]
