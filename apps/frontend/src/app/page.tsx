@@ -1,6 +1,4 @@
 import Image from "next/image";
-import { colors } from "@cadence/design-system";
-console.log(colors);
 
 export default function Home() {
   return (
