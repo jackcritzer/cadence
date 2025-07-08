@@ -1,7 +1,7 @@
 import { SSMClient, GetParameterCommand } from "@aws-sdk/client-ssm"
 import { DEMO_MODE } from "./config"
 
-const ssm = new SSMClient({ region: "us-east-1" })
+const ssm = new SSMClient({ region: "us-east-2" })
 
 export async function getSSMParameter(name: string) {
     if (DEMO_MODE) {
