@@ -34,10 +34,10 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
 
-            # 2. Write .env.production
+            # 2. Write .env.production from GitHub secret
             echo "${{ secrets.CADENCE_ENV_PRODUCTION }}" > .env.production
 
-            # 3. Rebuild and restart
+            # 3. Rebuild and restart containers
             docker compose down
             docker compose build
             docker compose up -d
