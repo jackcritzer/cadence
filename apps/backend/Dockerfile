@@ -10,6 +10,9 @@ RUN npm install -g pnpm
 # Install deps
 RUN pnpm install
 
+# 👇 Copy env file inside the container
+COPY .env.production .env
+
 # 👇 Generate Prisma client before build
 RUN pnpm --filter apps/backend exec prisma generate
 
