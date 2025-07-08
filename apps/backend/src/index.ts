@@ -8,14 +8,49 @@ const PORT = process.env.PORT || 3001
 
 async function start() {
     // Load secrets BEFORE importing routes or initializing anything that uses them
-    process.env.PORT = await getSSMParameter("/cadence/PORT") || "5000"
+    /* process.env.PORT = await getSSMParameter("/cadence/PORT") || "5000"
     process.env.JWT_SECRET = await getSSMParameter("/cadence/JWT_SECRET")
     process.env.DATABASE_URL = await getSSMParameter("/cadence/DATABASE_URL")
     process.env.AWS_ACCESS_KEY_ID = await getSSMParameter("/cadence/AWS_ACCESS_KEY_ID")
     process.env.AWS_SECRET_ACCESS_KEY = await getSSMParameter("/cadence/AWS_SECRET_ACCESS_KEY")
     process.env.AWS_REGION = await getSSMParameter("/cadence/AWS_REGION")
     process.env.S3_BUCKET_NAME = await getSSMParameter("/cadence/S3_BUCKET_NAME")
-    process.env.DEMO_MODE = await getSSMParameter("/cadence/DEMO_MODE");
+    process.env.DEMO_MODE = await getSSMParameter("/cadence/DEMO_MODE"); */
+
+    try {
+        const requiredParams = [
+            "/cadence/PORT",
+            "/cadence/JWT_SECRET",
+            "/cadence/DATABASE_URL",
+            "/cadence/AWS_ACCESS_KEY_ID",
+            "/cadence/AWS_SECRET_ACCESS_KEY",
+            "/cadence/AWS_REGION",
+            "/cadence/S3_BUCKET_NAME",
+            "/cadence/DEMO_MODE",
+            "/cadence/CORS_ORIGIN",
+        ];
+
+        for (const name of requiredParams) {
+            console.log(`🔍 Checking: ${name}`);
+            const value = await getSSMParameter(name);
+            console.log(`✅ Found: ${name} = ${value}`);
+        }
+
+        // Set values as needed after confirming they exist
+        process.env.PORT = await getSSMParameter("/cadence/PORT");
+        process.env.JWT_SECRET = await getSSMParameter("/cadence/JWT_SECRET");
+        process.env.DATABASE_URL = await getSSMParameter("/cadence/DATABASE_URL");
+        process.env.AWS_ACCESS_KEY_ID = await getSSMParameter("/cadence/AWS_ACCESS_KEY_ID");
+        process.env.AWS_SECRET_ACCESS_KEY = await getSSMParameter("/cadence/AWS_SECRET_ACCESS_KEY");
+        process.env.AWS_REGION = await getSSMParameter("/cadence/AWS_REGION");
+        process.env.S3_BUCKET_NAME = await getSSMParameter("/cadence/S3_BUCKET_NAME");
+        process.env.DEMO_MODE = await getSSMParameter("/cadence/DEMO_MODE");
+        process.env.CORS_ORIGIN = await getSSMParameter("/cadence/CORS_ORIGIN");
+
+        console.log("✅ All secrets loaded");
+    } catch (err) {
+        console.error("❌ Failed to start app:", err);
+    }
 
     console.log(`Secrets loaded successfully ${process.env.DATABASE_URL}`)
 
