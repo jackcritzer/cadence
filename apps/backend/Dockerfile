@@ -1,32 +1,24 @@
 FROM node:20
 
-# Set working directory
-WORKDIR /cadence
+WORKDIR /app
 
-# Install pnpm globally
 RUN npm install -g pnpm
 
-# Copy root workspace files
+# Copy only what's needed for dependency resolution
 COPY pnpm-workspace.yaml pnpm-lock.yaml ./
-
-# Copy backend package.json and tsconfig for dependency resolution
 COPY apps/backend/package.json apps/backend/tsconfig.json ./apps/backend/
 
-# Install dependencies
 RUN pnpm install
 
-# Copy environment file
-COPY .env.production .env
-
-# Copy full backend and prisma schema
+# Copy source code for prisma generate and build
 COPY apps/backend ./apps/backend
+COPY apps/backend/prisma ./apps/backend/prisma
 
 # Generate Prisma client
-RUN pnpm --filter cadence-backend exec prisma generate --schema=/cadence/apps/backend/prisma/schema.prisma
+RUN pnpm --filter ./apps/backend exec prisma generate --schema=apps/backend/prisma/schema.prisma
 
-# Build backend
-WORKDIR /cadence/apps/backend
+# Build the backend
+WORKDIR /app/apps/backend
 RUN pnpm run build
 
-# Start server
 CMD ["pnpm", "start"]
