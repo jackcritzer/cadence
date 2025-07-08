@@ -3,3 +3,4 @@ cadence-monorepo.code-workspace
 dist
 .env
 .env.production
+apps/backend/src/generated/
