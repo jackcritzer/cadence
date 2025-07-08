@@ -4,6 +4,14 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'apps/backend/**'
+      - 'apps/backend/Dockerfile'
+      - 'docker-compose.yml'
+      - '.dockerignore'
+      - '.env.example'
+      - '.github/workflows/deploy-backend.yml'
+  workflow_dispatch:
 
 jobs:
   deploy:
