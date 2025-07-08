@@ -1,30 +1,19 @@
 FROM node:20
 
-# Set workdir
+# Set correct schema path
 WORKDIR /app
 
-# Copy lockfile and monorepo config
-COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+# Copy backend including schema
+COPY apps/backend ./apps/backend
 
-# Copy backend package.json and tsconfig
-COPY apps/backend/package.json apps/backend/tsconfig.json ./apps/backend/
-
-# Install dependencies
-RUN npm install -g pnpm && pnpm install
-
-# Copy .env before prisma generate
+# .env
 COPY .env.production .env
 
-# Copy backend and prisma files
-COPY apps/backend ./apps/backend
-COPY prisma ./prisma
+# Generate Prisma Client from original path
+RUN pnpm --filter apps/backend exec prisma generate --schema=apps/backend/prisma/schema.prisma
 
-# Generate Prisma client
-RUN pnpm --filter apps/backend exec prisma generate
-
-# Build backend
+# Build
 WORKDIR /app/apps/backend
 RUN pnpm run build
 
-# Start
 CMD ["pnpm", "start"]
