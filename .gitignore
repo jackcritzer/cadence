@@ -2,3 +2,4 @@ node_modules
 cadence-monorepo.code-workspace
 dist
 .env
+.env.production

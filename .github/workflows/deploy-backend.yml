@@ -4,25 +4,32 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'apps/backend/**'
-      - 'docker-compose.yml'
-  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: SSH and deploy backend
-        uses: appleboy/ssh-action@master
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Deploy to EC2 via SSH
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.CADENCE_EC2_HOST }}
           username: ec2-user
           key: ${{ secrets.CADENCE_EC2_SSH_KEY }}
           script: |
             cd ~/cadence
-            git pull origin main
-            docker-compose build backend
-            docker-compose up -d backend
-            docker system prune -f
+
+            # 1. Pull latest code
+            git fetch origin main
+            git reset --hard origin/main
+
+            # 2. Write .env.production
+            echo "${{ secrets.CADENCE_ENV_PRODUCTION }}" > .env.production
+
+            # 3. Rebuild and restart
+            docker compose down
+            docker compose build
+            docker compose up -d
