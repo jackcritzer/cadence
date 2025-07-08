@@ -15,6 +15,7 @@ async function start() {
     process.env.AWS_SECRET_ACCESS_KEY = await getSSMParameter("/cadence/AWS_SECRET_ACCESS_KEY")
     process.env.AWS_REGION = await getSSMParameter("/cadence/AWS_REGION")
     process.env.S3_BUCKET_NAME = await getSSMParameter("/cadence/S3_BUCKET_NAME")
+    process.env.DEMO_MODE = await getSSMParameter("/cadence/DEMO_MODE");
 
     console.log(`Secrets loaded successfully ${process.env.DATABASE_URL}`)
 
