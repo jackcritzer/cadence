@@ -4,7 +4,7 @@ import morgan from "morgan"
 import { getSSMParameter } from "./secrets"
 
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3001
 
 async function start() {
     // Load secrets BEFORE importing routes or initializing anything that uses them
