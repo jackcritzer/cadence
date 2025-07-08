@@ -9,6 +9,13 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "seed.ts", "dist"]
+  "include": [
+      "src/**/*.ts", 
+      "src/generated/prisma"
+  ],
+  "exclude": [
+    "node_modules", 
+    "seed.ts", 
+    "dist"
+  ]
 }

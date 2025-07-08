@@ -12,11 +12,13 @@ RUN pnpm install
 # Copy source code
 COPY apps/backend ./apps/backend
 
-# Set working directory and generate Prisma client
-WORKDIR /cadence/apps/backend
-RUN pnpm exec prisma generate --schema=prisma/schema.prisma
+# 1. Generate Prisma client
+RUN pnpm --filter cadence-backend exec prisma generate --schema=apps/backend/prisma/schema.prisma
 
-# Build
+RUN ls -R /cadence/apps/backend/src/generated
+
+# 2. Build backend
+WORKDIR /cadence/apps/backend
 RUN pnpm run build
 
 # Start
