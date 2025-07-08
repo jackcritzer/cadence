@@ -12,6 +12,9 @@ RUN pnpm install
 # Copy source code
 COPY apps/backend ./apps/backend
 
+RUN pnpm --filter cadence-backend add -D prisma
+RUN pnpm --filter cadence-backend add @prisma/client
+
 # 1. Generate Prisma client
 RUN pnpm --filter cadence-backend exec prisma generate --schema=apps/backend/prisma/schema.prisma
 
