@@ -1,4 +1,5 @@
 "use client";
+import { Analytics } from '@vercel/analytics/next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Inter, DM_Sans } from "next/font/google";
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${inter.variable} ${dmSans.variable} antialiased`}>
         <Header />
         {children}
+        <Analytics />
         <Footer />
       </body>
     </html>
